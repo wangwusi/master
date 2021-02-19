@@ -1,0 +1,20 @@
+#端口
+server:
+  port: 8001
+
+spring:
+  application:
+    name: eureka
+
+# 实例名称
+eureka:
+  instance:
+    hostname: eureka
+  #指示此实例是否应将其信息注册到eureka服务器以供其他服务发现，默认为false
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+  #关闭自我保护机制 自我保护机制在实际开发中关闭
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 1000

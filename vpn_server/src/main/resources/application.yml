@@ -1,0 +1,37 @@
+server:
+  port: 8002
+  tomcat:
+    uri-encoding: UTF-8
+spring:
+  application:
+    name: vpn_server
+  datasource:
+    url: jdbc:mysql://rm-wz9f5b45x45n12f9wso.mysql.rds.aliyuncs.com:3306/master?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useAffectedRows=true&zeroDateTimeBehavior=CONVERT_TO_NULL&allowMultiQueries=true&useSSL=true
+    username: wjh1642035387
+    password: 97XINzhongyouta
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka/
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**Mapper.xml
+  typeAliasesPackage: com.ws.vpn_server.domain.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+  global-config:
+    db-config:
+      id-type: input
+      field-strategy: not_empty
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      table-underline: true
+logging:
+  level:
+    com.ws.vpn_server.dao: debug
+ssh:
+  address: 47.240.104.140
+  username: root
+  password: 97XINzhongyouta

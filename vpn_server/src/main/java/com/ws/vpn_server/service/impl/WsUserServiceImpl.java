@@ -73,4 +73,19 @@ public class WsUserServiceImpl extends ServiceImpl<WsUserDao, WsUserEntity> impl
 
         baseMapper.insert(entity);
     }
+
+    @Override
+    public void start() {
+        SSHClientUtil sshClient = new SSHClientUtil(address, username, password);
+        sshClient.exec("systemctl start  docker.service");
+
+        List<WsUserEntity> list = baseMapper.selectList(new QueryWrapper<>());
+        if(CollUtil.isEmpty(list)){
+            return;
+        }
+        list.forEach( m -> {
+            sshClient.exec("docker start " + m.getUsername());
+        });
+        sshClient.logout();
+    }
 }
